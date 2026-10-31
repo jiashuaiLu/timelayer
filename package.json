@@ -1,0 +1,36 @@
+{
+  "name": "timelayer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TimeLayer — the biography of a street, 100 years in one drag.",
+  "scripts": {
+    "dev": "next dev --port 4310",
+    "build": "next build",
+    "start": "next start --port 4310",
+    "check:m1": "tsx scripts/check-m1.ts",
+    "check:m2": "tsx scripts/check-m2.ts",
+    "check:m4": "tsx scripts/check-m4.ts",
+    "check": "npm run check:m1 && npm run check:m2 && npm run check:m4",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.12",
+    "idb": "^8.0.3",
+    "maplibre-gl": "^5.6.0",
+    "next": "^15.5.0",
+    "playwright-core": "^1.56.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^3.25.76",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}
