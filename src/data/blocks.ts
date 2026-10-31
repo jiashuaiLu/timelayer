@@ -322,6 +322,7 @@ export function compileBlock(plan: BlockPlan): Block {
     events: finalEvents,
     hookLine: plan.hookLine,
     paper: plan.paper,
+    commonsCategory: plan.commonsCategory,
     streets: finalStreets,
     buildings: finalBuildings,
     extent: Math.ceil(extent / 20) * 20 + 20,

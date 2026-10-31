@@ -125,6 +125,8 @@ export interface Block extends BlockGeometry {
   hookLine: string;
   /** paper colour token */
   paper: "warm" | "cool";
+  /** Wikimedia Commons category that holds this street's archival material */
+  commonsCategory: string;
 }
 
 /** What M1 is allowed to return. Note the absence of any door-level field. */

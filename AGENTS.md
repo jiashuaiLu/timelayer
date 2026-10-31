@@ -24,6 +24,12 @@
    两个图层槽 `bld-fill-a/b`、`bld-line-a/b` 交替；旧槽只在新槽就位后归零，
    不要在切换瞬间 `removeLayer`，会闪白。
 
+5. **影像不能造。**
+   左下角的照片只能来自 `src/imagery/` 的公开档案适配器（Wikimedia Commons；
+   Mapillary 需要 token）。三条硬规则：年份必须是照片自己的年份（`evidenceForYear` 只往前取，
+   不会把未来的照片放到过去）、大图必须给作者/许可证/原始链接、拉不到就整块不显示，
+   禁止用占位图或生成图填充。
+
 ## 数据与范围
 
 - **只做纽约，两个街区**（`sunnyside-44dr`、`crosby-soho`）。加城市/街区前先确认：
@@ -57,6 +63,8 @@ npm run build
 | 时间轴手感（惯性、回弹、刻度抽稀） | `src/components/TimeRuler.tsx` |
 | 卡片版式与导出 | `src/lib/cardRenderer.ts` |
 | 档案纸条文案 | `src/pipeline/narrative.ts` 的 `draftNarrative` |
+| 影像来源与取舍（哪张图、哪个年代） | `src/imagery/commons.ts` |
+| 影像的摆放与放大 | `src/components/EvidencePhoto.tsx` |
 | 首页与定位呼吸 | `src/components/EntryScreen.tsx` |
 
 ## 风格约定

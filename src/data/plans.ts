@@ -81,6 +81,7 @@ export interface BlockPlan {
   radiusM: number;
   rotation: number;
   paper: "warm" | "cool";
+  commonsCategory: string;
   hookLine: string;
   aliases: string[];
   era: { from: number; to: number };
@@ -107,6 +108,7 @@ export const SUNNYSIDE: BlockPlan = {
   centroid: { lng: -73.9241, lat: 40.74425 },
   radiusM: 620,
   rotation: 24,
+  commonsCategory: "Sunnyside, Queens",
   hookLine: "一条被高架切开的街",
   aliases: [
     "sunnyside",
@@ -268,6 +270,7 @@ export const CROSBY: BlockPlan = {
   centroid: { lng: -73.9993, lat: 40.7237 },
   radiusM: 540,
   rotation: -9,
+  commonsCategory: "Crosby Street (Manhattan)",
   hookLine: "同一栋楼，三种人生",
   aliases: [
     "soho",

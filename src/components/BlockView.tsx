@@ -8,6 +8,8 @@ import { MapStage } from "@/components/MapStage";
 import { TimeRuler } from "@/components/TimeRuler";
 import { ArchiveNote } from "@/components/ArchiveNote";
 import { BiographyCard } from "@/components/BiographyCard";
+import { EvidencePhoto } from "@/components/EvidencePhoto";
+import type { Evidence } from "@/imagery/types";
 import { countChanges } from "@/lib/mapPlan";
 import { buildSlices, type GapSpan } from "@/pipeline/slices";
 import { buildVerdict, narrativeFor } from "@/pipeline/narrative";
@@ -25,11 +27,25 @@ export function BlockView({ block }: { block: Block }) {
   const [gap, setGap] = useState<GapSpan | null>(null);
   const [cardOpen, setCardOpen] = useState(false);
   const [polished, setPolished] = useState<Record<string, string>>({});
+  const [evidence, setEvidence] = useState<Evidence[]>([]);
 
   useEffect(() => {
     init(block);
     void rememberVisit({ slug: block.slug, name: block.name, at: Date.now() });
   }, [block, init]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/api/imagery/${block.slug}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: { items?: Evidence[] } | null) => {
+        if (!cancelled && data?.items) setEvidence(data.items);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [block.slug]);
 
   // the model is allowed to improve the sentence, never to change the facts
   useEffect(() => {
@@ -116,6 +132,8 @@ export function BlockView({ block }: { block: Block }) {
       <span className="crop tr" />
       <span className="crop bl" />
       <span className="crop br" />
+
+      <EvidencePhoto items={evidence} year={sliceYear} blockName={block.name} />
 
       <header className="stage-head">
         <div>
