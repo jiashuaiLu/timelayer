@@ -376,8 +376,9 @@ export function addPlanLayers(
       map.setFilter("street-severed", ["<=", ["get", "to"], y] as never);
     },
     buildingAt(point) {
+      // ghosts count: an empty lot that used to be a theatre is still the story
       const features = map.queryRenderedFeatures([point.x, point.y], {
-        layers: ["bld-fill-a", "bld-fill-b"],
+        layers: ["bld-fill-a", "bld-fill-b", "gone", "reuse"],
       });
       const f = features.find((x) => x.properties?.ev);
       if (!f) return null;
